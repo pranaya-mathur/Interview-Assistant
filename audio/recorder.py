@@ -5,7 +5,7 @@ import time
 # Audio Configuration
 SAMPLE_RATE = 16000
 CHUNK_DURATION = 0.5
-SILENCE_THRESHOLD = 0.015
+SILENCE_THRESHOLD = 0.030  # Increased to prevent false triggers from background noise
 MAX_QUESTION_DURATION = 45
 SILENCE_TIMEOUT = 3.5
 DEBUG_VAD = True

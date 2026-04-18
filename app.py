@@ -85,6 +85,9 @@ async def run_interview_loop():
     hotwords = ", ".join(sorted(list(set(project_names))))
     print(f"✅ Whisper biased towards {len(project_names)} project identifiers.")
     
+    # Initialize Interview Memory (Short-term context)
+    chat_history = []
+    
     try:
         while True:
             # 1. Capture Audio
@@ -115,7 +118,12 @@ async def run_interview_loop():
             print("\n🤖 Generating grounded answer...")
             
             # 5. Generate Answer
-            answer = ask_llm(question, context=context)
+            answer = ask_llm(question, context=context, history=chat_history)
+            
+            # Update Interview Memory
+            chat_history.append({"Q": question, "A": answer})
+            chat_history = chat_history[-4:] # Keep strictly last 4 exchanges
+
             
             print("\n" + "="*100)
             print("💡 SUGGESTED ANSWER:")

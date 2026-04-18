@@ -18,7 +18,7 @@ if GROQ_API_KEY and GROQ_API_KEY != "your_api_key_here":
     except Exception as e:
         print(f"⚠️ GROQ Init Error: {e}")
 
-def ask_llm(question, context=""):
+def ask_llm(question, context="", history=None):
     """Generates an answer using GROQ or local Ollama fallback, grounded in context."""
     
     # v2 Layered Prompt Architecture
@@ -43,7 +43,14 @@ ANSWER POLICY:
 5. PRECISION: Use technical terms correctly but keep the spoken answer concise (under 150 words).
 """
 
-    prompt = f"{identity_layer}\n\n{evidence_layer}\n\nQUESTION: {question}\n\n{policy_layer}"
+"""
+
+    history_layer = ""
+    if history and len(history) > 0:
+        history_str = "\n".join([f"Interviewer: {turn['Q']}\nYou: {turn['A'][:200]}..." for turn in history])
+        history_layer = f"PREVIOUS CONVERSATION (Memory):\n{history_str}\n\n"
+
+    prompt = f"{identity_layer}\n\n{evidence_layer}\n\n{history_layer}QUESTION: {question}\n\n{policy_layer}"
 
     # 1. Try GROQ for instant speed if available
     if groq_llm:
