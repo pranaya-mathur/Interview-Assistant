@@ -8,6 +8,22 @@ HALLUCINATIONS = [
     "i'm so sorry", "please subscribe", "i'll see you in the next video"
 ]
 
+# Phonetic correction mapping to fix Whisper's common misspellings of project names
+PHONETIC_CORRECTIONS = {
+    "nice setu": "Nyaysetu",
+    "nine setu": "Nyaysetu",
+    "of geek": "GovGig",
+    "gov gig": "GovGig",
+    "icu application": "SecureVU application",
+    "icu": "SecureVU",
+    "secure view": "SecureVU",
+    "yajna ai": "Yojana-AI",
+    "yojana ai": "Yojana-AI",
+    "sovereign ai": "Sovereign-AI",
+    "sovrin ai": "Sovereign-AI",
+    "suburban ai": "Sovereign-AI"
+}
+
 def transcribe_audio(audio_array, sample_rate=16000, hotwords=""):
     """Transcribes audio array with dynamic hotword biasing (Nyaysetu, GovGig, etc.)."""
     temp_file = "temp_question.wav"
@@ -26,6 +42,12 @@ def transcribe_audio(audio_array, sample_rate=16000, hotwords=""):
         )
         text = result["text"].strip()
         
+        # Apply Post-Correction for known phonetic mistakes
+        for mistake, correct_name in PHONETIC_CORRECTIONS.items():
+            # Use case-insensitive replace for better matching
+            import re
+            text = re.sub(rf"(?i)\b{re.escape(mistake)}\b", correct_name, text)
+            
         # Clean up hallucinations
         cleaned_text = filter_hallucinations(text)
         return cleaned_text

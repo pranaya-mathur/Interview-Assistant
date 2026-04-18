@@ -18,6 +18,10 @@ from llm.answer_generator import ask_llm, speak_answer, extract_and_save_code
 from router.question_router import QuestionRouter
 from context.retrievers.memory_retriever import MemoryRetriever
 from context.vector_store import VectorStore
+from context.mcp_client import MCPClient
+from context.retrievers.filesystem_retriever import FilesystemRetriever
+from context.retrievers.github_retriever import GitHubRetriever
+from context.retrievers.git_retriever import GitRetriever
 
 async def run_interview_loop():
     print("\n" + "="*100)
