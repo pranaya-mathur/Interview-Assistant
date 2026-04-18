@@ -1,0 +1,8 @@
+sounddevice
+numpy
+scipy
+mlx-whisper
+requests
+ollama
+langchain-groq
+python-dotenv

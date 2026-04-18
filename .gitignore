@@ -1,0 +1,27 @@
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# Environment Variables (CRITICAL: Do not upload your API keys!)
+.env
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.ipynb_checkpoints
+
+# Project Specific
+interview_notes.txt
+temp_question.wav
+*.wav
+
+# Mac System Files
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
