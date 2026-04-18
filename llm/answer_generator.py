@@ -43,8 +43,6 @@ ANSWER POLICY:
 5. PRECISION: Use technical terms correctly but keep the spoken answer concise (under 150 words).
 """
 
-"""
-
     history_layer = ""
     if history and len(history) > 0:
         history_str = "\n".join([f"Interviewer: {turn['Q']}\nYou: {turn['A'][:200]}..." for turn in history])
