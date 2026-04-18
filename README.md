@@ -54,7 +54,7 @@ PYTHONPATH=. python storage/vector_sync.py
 **4. Spin up the Copilot**
 Initialize the dual-pipeline STT and Semantic Generation engines concurrently:
 ```bash
-python main.py
+python app.py
 ```
 
 ## 🛠 Core Tech Stack
