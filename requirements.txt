@@ -6,3 +6,5 @@ requests
 ollama
 langchain-groq
 python-dotenv
+mcp[cli]
+pydantic

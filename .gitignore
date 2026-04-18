@@ -25,3 +25,20 @@ temp_question.wav
 # IDEs
 .vscode/
 .idea/
+
+# Vector Database & Sync Logs
+storage/vector_db/
+storage/*.log
+storage/*.txt
+storage/coding_snippet.py
+storage/actual_repos.json
+
+# Diagnostic & Throwaway Scripts
+storage/discover_repos.py
+storage/check_structure.py
+storage/final_check.py
+storage/get_user_fixed.py
+storage/test_search.py
+storage/list_tools.py
+storage/diag.py
+storage/inspect_training_frame.py
